@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane style="-fx-background-color: #99ccff; -fx-border-radius: 200px;" styleClass="we" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="spanish.FXMLDocumentController">
+<GridPane fx:id="gridpane" style="-fx-background-color: #99ccff; -fx-border-radius: 200px;" styleClass="we" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="spanish.FXMLDocumentController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="237.0" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="237.0" minWidth="10.0" prefWidth="100.0" />
@@ -27,7 +27,7 @@
     <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label fx:id="prompt" prefHeight="100.0" prefWidth="616.0" text="" GridPane.columnIndex="1" GridPane.columnSpan="6">
+      <Label fx:id="prompt" prefHeight="100.0" prefWidth="616.0" text="hi" GridPane.columnIndex="1" GridPane.columnSpan="6">
          <font>
             <Font size="36.0" />
          </font>
@@ -37,27 +37,28 @@
             <Font size="30.0" />
          </font>
       </TextField>
-      <Button mnemonicParsing="false" onAction="#addA" onKeyPressed="#submit" prefHeight="40.0" prefWidth="40.0" text="á" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <Button mnemonicParsing="false" onAction="#addA" onKeyPressed="#submit" prefHeight="40.0" prefWidth="40.0" style="-fx-cursor: pointer;" text="á" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="30.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" onAction="#addE" onKeyPressed="#submit" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 5px;" text="é" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin></Button>
-      <Button mnemonicParsing="false" onAction="#addE" onKeyPressed="#submit" prefHeight="40.0" prefWidth="40.0" text="é" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <Button mnemonicParsing="false" onAction="#addI" onKeyPressed="#submit" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 5px;" text="í" GridPane.columnIndex="3" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin></Button>
-      <Button mnemonicParsing="false" onAction="#addI" onKeyPressed="#submit" prefHeight="40.0" prefWidth="40.0" text="í" GridPane.columnIndex="3" GridPane.rowIndex="2">
+      <Button mnemonicParsing="false" onAction="#addO" onKeyPressed="#submit" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 5px;" text="ó" GridPane.columnIndex="4" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin></Button>
-      <Button mnemonicParsing="false" onAction="#addO" onKeyPressed="#submit" prefHeight="40.0" prefWidth="40.0" text="ó" GridPane.columnIndex="4" GridPane.rowIndex="2">
+      <Button mnemonicParsing="false" onAction="#addU" onKeyPressed="#submit" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 5px;" text="ú" GridPane.columnIndex="5" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin></Button>
-      <Button mnemonicParsing="false" onAction="#addU" onKeyPressed="#submit" prefHeight="40.0" prefWidth="40.0" text="ú" GridPane.columnIndex="5" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets left="30.0" />
-         </GridPane.margin></Button>
-      <Button mnemonicParsing="false" onAction="#addN" onKeyPressed="#submit" prefHeight="40.0" prefWidth="40.0" text="ñ" GridPane.columnIndex="6" GridPane.rowIndex="2">
+      <Button mnemonicParsing="false" onAction="#addN" onKeyPressed="#submit" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 5px;" text="ñ" GridPane.columnIndex="6" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin></Button>

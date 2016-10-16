@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.*;
 
 /**
  *
@@ -20,12 +21,24 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML private TextField answerInput;
     @FXML private Label prompt;
+    @FXML private GridPane gridpane;
+    
+    boolean createSet = false;
+    Question question;
     
     @FXML
     private void submit(ActionEvent event) {
-        
-        prompt.setText("hi");
-        answerInput.clear();
+        question.setAnswer("answer");
+        if(answerInput.getText().trim().isEmpty()){
+            prompt.setText("type something");
+        }
+        else if (answerInput.getText().trim().equals(question.getAnswer())){
+            prompt.setText("correct!");
+        }
+        else {
+            prompt.setText("ur wrong");
+        }
+        answerInput.clear(); 
     }
     
     @FXML
