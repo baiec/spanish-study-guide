@@ -20,7 +20,7 @@ public class FileNameMap{
      */
     
     public void add(String header, String fileName){
-       String[] temp = {header.toLowerCase(), fileName.toLowerCase()};
+       String[] temp = {header.trim(), fileName.toLowerCase().trim()};
        mappings.add(temp);
     }
     
@@ -33,6 +33,7 @@ public class FileNameMap{
      */
     
     public String getFileName(String header){
+        header = header.toLowerCase().trim();
         for(String[] a : mappings){
             if(header.equals(a[HEADER])){
                 return a[FILENAME];
@@ -45,7 +46,7 @@ public class FileNameMap{
     public String toString(){
         String x = "";
         for(String[] a : mappings){
-            x = "[" + a[HEADER] + ", " + a[FILENAME] + "]";
+            x += "[" + a[HEADER] + ", " + a[FILENAME] + "]";
         }
         return x;
     }

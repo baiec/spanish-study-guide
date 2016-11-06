@@ -19,27 +19,13 @@ import javafx.stage.Stage;
  */
 public class Spanish extends Application {
     
-    FileNameMap fnm = new FileNameMap();
+    FileNameMap fnm;
     
     @Override
     public void start(Stage stage) throws Exception {
-
-        try{
-            FileReader fr = new FileReader("sets\\set1.txt");
-            int c = 0;
-            String line = "";
-            while((c = fr.read()) != -1){
-                if((char) c != '\n'){
-                    line = line + c;
-                }
-                else {
-                    System.out.println(line);
-                    line = "";
-                }
-            }
-        } catch(IOException e){
-            System.out.println(e);
-        } 
+        
+        fnm = new FileNameMap();
+        populateFNM();
         
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
@@ -49,11 +35,46 @@ public class Spanish extends Application {
         stage.show();
     }
 
+    
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String[] args) {
         launch(args);
     }
     
+
+    /**
+     * Looks in sets directory and maps files to filename headers
+     * using FileNameMap (fnm).
+     */
+    
+    public void populateFNM(){
+        
+        String path = "C:\\Users\\Alex\\Desktop\\Stash\\code\\spanish\\src\\spanish\\sets\\set2.txt";
+        
+        try{
+            FileReader fr = new FileReader(path);
+            int c = 0;
+            String line = "";
+            while((c = fr.read()) != -1){
+                if((char) c != '\n'){
+                    line = line + (char) c;
+                    
+                }
+                else {
+                    System.out.println(line);
+                    fnm.add(line, path);
+                    System.out.println(line);
+                    System.out.println(fnm);
+                    System.out.println(fnm.getFileName("set1"));
+                    break;
+                }
+            }
+        } catch(IOException e){
+            System.out.println(e);
+        } 
+        
+    }
 }
