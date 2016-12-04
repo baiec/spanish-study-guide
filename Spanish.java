@@ -17,57 +17,89 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- *
+ * Spanish
+ * 
+ * A quizlet like application for studying Spanish.
+ * 
  * @author Alex
  */
+
 public class Spanish extends Application {
-    
-    FileNameMap fnm;
+
+    static String      setsDir  = new String();
+    static FileNameMap fnm      = new FileNameMap();
+
     
     @Override
     public void start(Stage stage) throws Exception {
-        
-        //fnm = new FileNameMap();
-        
-        
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
         Scene scene = new Scene(root);
-        
+
         stage.setScene(scene);
         stage.show();
     }
 
-    
+
+    public static void main(String[] args) {
+        try {
+            initialize();
+        }
+        catch (NullPointerException npe) {
+            System.out.println("Could not open sets directory (" + setsDir + ").");
+        }
+        
+        launch(args);
+    }
+
+
     /**
-     * @param args the command line arguments
+     * Performs preliminary start-up tasks.
      */
     
-    public static void main(String[] args) {
-        populateFNM();
-        launch(args);
+    private static void initialize() {
+        if (System.getProperty("os.name").equalsIgnoreCase("windows")) {
+            setsDir = System.getProperty("user.dir") + "\\src\\spanish\\sets";
+        }
+        else {
+            setsDir = System.getProperty("user.dir") + "/src/spanish/sets";
+        }
+        
+        setsDirContents().forEach((file)->{
+            System.out.println(file.getName());
+        });
+        // populateFNM();
     }
     
 
     /**
-     * Looks in sets directory and maps files to filename headers
-     * using FileNameMap (fnm).
+     * @return ArrayList<File> The contents of the sets directory.
+     */
+
+    private static ArrayList<File> setsDirContents() throws NullPointerException {
+
+        File f;
+        ArrayList<File> files;
+
+        f = new File(setsDir);
+        files = new ArrayList<>(Arrays.asList(f.listFiles()));
+
+        return files;
+    }
+    
+    
+    /**
+     * For each set, look at the header line and map the header to the
+     * file name and store inside the FileNameMap (fnm).
      */
     
-    public static void populateFNM(){
-        try{
-            File f = new File(System.getProperty("user.dir") + "\\src\\spanish\\sets");
-            ArrayList<File> files = new ArrayList<File>(Arrays.asList(f.listFiles()));
-            
-            for(File file : files){
-                System.out.println(file);
-            }
-        }catch(Exception e){
-            System.out.println(e);
-        }
+    private static void populateFNM() {
+        return;
+    }
+}
+
         /*
         String path = "C:\\Users\\Alex\\Desktop\\Stash\\code\\spanish\\src\\spanish\\sets\\set2.txt";
-        
+
         try{
             FileReader fr = new FileReader(path);
             int c = 0;
@@ -86,7 +118,5 @@ public class Spanish extends Application {
             }
         } catch(IOException e){
             System.out.println(e);
-        } 
+        }
         */
-    }
-}
