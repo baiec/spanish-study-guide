@@ -12,6 +12,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -24,8 +27,8 @@ public class Spanish extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         
-        fnm = new FileNameMap();
-        populateFNM();
+        //fnm = new FileNameMap();
+        
         
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
@@ -41,6 +44,7 @@ public class Spanish extends Application {
      */
     
     public static void main(String[] args) {
+        populateFNM();
         launch(args);
     }
     
@@ -50,8 +54,18 @@ public class Spanish extends Application {
      * using FileNameMap (fnm).
      */
     
-    public void populateFNM(){
-        
+    public static void populateFNM(){
+        try{
+            File f = new File(System.getProperty("user.dir") + "\\src\\spanish\\sets");
+            ArrayList<File> files = new ArrayList<File>(Arrays.asList(f.listFiles()));
+            
+            for(File file : files){
+                System.out.println(file);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        /*
         String path = "C:\\Users\\Alex\\Desktop\\Stash\\code\\spanish\\src\\spanish\\sets\\set2.txt";
         
         try{
@@ -61,12 +75,10 @@ public class Spanish extends Application {
             while((c = fr.read()) != -1){
                 if((char) c != '\n'){
                     line = line + (char) c;
-                    
                 }
                 else {
                     System.out.println(line);
                     fnm.add(line, path);
-                    System.out.println(line);
                     System.out.println(fnm);
                     System.out.println(fnm.getFileName("set1"));
                     break;
@@ -75,6 +87,6 @@ public class Spanish extends Application {
         } catch(IOException e){
             System.out.println(e);
         } 
-        
+        */
     }
 }
