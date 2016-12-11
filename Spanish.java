@@ -67,12 +67,14 @@ public class Spanish extends Application {
         setsDirContents().forEach((file)->{
             System.out.println(file.getName());
         });
+        
         // populateFNM();
     }
     
 
     /**
      * @return ArrayList<File> The contents of the sets directory.
+     * @throws NullPointerException Thrown when the setsDir is not found.
      */
 
     private static ArrayList<File> setsDirContents() throws NullPointerException {
