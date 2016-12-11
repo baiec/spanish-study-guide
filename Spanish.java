@@ -13,19 +13,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Spanish
  * 
- * A quizlet like application for studying Spanish.
+ * A quizlet-like application for studying Spanish.
  * 
  * @author Alex
  */
 
 public class Spanish extends Application {
-
+    
+    /*@var absolute path to sets directory with trailing slash*/
     static String      setsDir  = new String();
     static FileNameMap fnm      = new FileNameMap();
 
@@ -58,17 +62,13 @@ public class Spanish extends Application {
     
     private static void initialize() {
         if (System.getProperty("os.name").equalsIgnoreCase("windows")) {
-            setsDir = System.getProperty("user.dir") + "\\src\\spanish\\sets";
+            setsDir = System.getProperty("user.dir") + "\\src\\spanish\\sets\\";
         }
         else {
-            setsDir = System.getProperty("user.dir") + "/src/spanish/sets";
+            setsDir = System.getProperty("user.dir") + "/src/spanish/sets/";
         }
         
-        setsDirContents().forEach((file)->{
-            System.out.println(file.getName());
-        });
-        
-        // populateFNM();
+        populateFNM();
     }
     
 
@@ -94,7 +94,27 @@ public class Spanish extends Application {
      * file name and store inside the FileNameMap (fnm).
      */
     
-    private static void populateFNM() {
+    private static void populateFNM(){
+        //set is the file name
+        setsDirContents().forEach((set)->{
+            FileReader fr = null;
+            
+            try {
+                fr = new FileReader(set);
+                int c = 0;
+                String header = "";
+                while((c = fr.read()) != -1){
+                    if((char) c != '\n'){
+                        header = header + (char) c;
+                    } else break;
+                }
+                fnm.add(header, set.getAbsolutePath());
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Spanish.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException e){
+                System.out.println(e);
+            }
+        });
         return;
     }
 }

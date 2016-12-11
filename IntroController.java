@@ -8,6 +8,7 @@ package spanish;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 
 /**
  * FXML Controller class
@@ -16,12 +17,12 @@ import javafx.fxml.Initializable;
  */
 public class IntroController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    public ScrollPane setScrollPane;
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
 }
