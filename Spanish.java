@@ -115,30 +115,5 @@ public class Spanish extends Application {
                 System.out.println(e);
             }
         });
-        return;
     }
 }
-
-        /*
-        String path = "C:\\Users\\Alex\\Desktop\\Stash\\code\\spanish\\src\\spanish\\sets\\set2.txt";
-
-        try{
-            FileReader fr = new FileReader(path);
-            int c = 0;
-            String line = "";
-            while((c = fr.read()) != -1){
-                if((char) c != '\n'){
-                    line = line + (char) c;
-                }
-                else {
-                    System.out.println(line);
-                    fnm.add(line, path);
-                    System.out.println(fnm);
-                    System.out.println(fnm.getFileName("set1"));
-                    break;
-                }
-            }
-        } catch(IOException e){
-            System.out.println(e);
-        }
-        */
