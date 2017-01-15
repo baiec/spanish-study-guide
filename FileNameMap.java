@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class FileNameMap{
 
-    ArrayList<String[]> mappings = new ArrayList();
+    public ArrayList<String[]> mappings = new ArrayList();
     private final int HEADER = 0;
     private final int FILENAME = 1;
     
