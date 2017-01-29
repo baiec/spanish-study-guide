@@ -15,9 +15,12 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+
 
 /**
  * FXML Controller class
@@ -36,14 +39,18 @@ public class IntroController implements Initializable {
     
     
     
-    /**
-     * Sets up path to sets directory and runs populateFNM() 
-     */
+
     
     public void submit(){
         System.out.println("set1btnWorks " + btn.getId());
        
     }
+    
+    
+    /**
+     * Sets up path to sets directory and runs populateFNM(), createSetBtns()
+     * & insertSetBtns() 
+     */
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,6 +63,7 @@ public class IntroController implements Initializable {
             }
             populateFNM();
             createSetBtns();
+            insertSetBtns();
         }
         catch (NullPointerException npe) {
             System.out.println("Could not open sets directory (" + setsDir + ").");
@@ -112,25 +120,29 @@ public class IntroController implements Initializable {
     /**
      * For each set in the file name map create a button and put in ArrayList setBtns
      */
+    
     private void createSetBtns(){
-        int x = 0;
         fnm.mappings.forEach(set->{
             Button btn = new Button(set[0]);
             btn.setId(set[0]);
             btn.setPrefSize(675, 117);
-            //setBtns.add(btn);
-            //System.out.println(setBtns.size());
+            btn.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    System.out.println(btn.getId());
+                }
+            });
+            setBtns.add(btn);
+            System.out.println(setBtns.size());
         });
+    }
+    
+    
+    private void insertSetBtns(){
+        for(int i = 0; i < setBtns.size(); i++){
+            gridpane.add(setBtns.get(i), 0, i, 2, 1);
             
-            
-  /*
-        Button btn1 = new Button("btn1");
-            btn1.setId(;
-            btn1.setPrefSize(938, 108);
-            
-            gridpane.add(new Button(SETNAME).setId(SETHE, 0, 2, 2, 1);
-*/
-    } 
+        }
+    }
     
 }
 
