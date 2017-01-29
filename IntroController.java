@@ -20,6 +20,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import spanish.Spanish;
 
 
 /**
@@ -32,19 +33,7 @@ public class IntroController implements Initializable {
     public GridPane gridpane;
     public Button btn;
     
-    /*@var absolute path to sets directory with trailing slash*/
-    static String      setsDir  = new String();
-    static FileNameMap fnm      = new FileNameMap();
     ArrayList<Button> setBtns = new ArrayList<Button>();
-    
-    
-    
-
-    
-    public void submit(){
-        System.out.println("set1btnWorks " + btn.getId());
-       
-    }
     
     
     /**
@@ -54,81 +43,25 @@ public class IntroController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            if (System.getProperty("os.name").equalsIgnoreCase("windows")) {
-                setsDir = System.getProperty("user.dir") + "\\src\\spanish\\sets\\";
-            }
-            else {
-                setsDir = System.getProperty("user.dir") + "/src/spanish/sets/";
-            }
-            populateFNM();
+
             createSetBtns();
             insertSetBtns();
-        }
-        catch (NullPointerException npe) {
-            System.out.println("Could not open sets directory (" + setsDir + ").");
-        }
-    }   
-    
-    
-    /**
-     * @return ArrayList<File> The contents of the sets directory.
-     * @throws NullPointerException Thrown when the setsDir is not found.
-     */
-
-    private static ArrayList<File> setsDirContents() throws NullPointerException {
-
-        File f;
-        ArrayList<File> files;
-
-        f = new File(setsDir);
-        files = new ArrayList<>(Arrays.asList(f.listFiles()));
-
-        return files;
-    }
-    
-    
-    /**
-     * For each set, look at the header line and map the header to the
-     * file name and store inside the FileNameMap (fnm).
-     */
-    
-    private static void populateFNM(){
-        //set is the file name
-        setsDirContents().forEach((set)->{
-            FileReader fr = null;
-            
-            try {
-                fr = new FileReader(set);
-                int c = 0;
-                String header = "";
-                while((c = fr.read()) != -1){
-                    if((char) c != '\n'){
-                        header = header + (char) c;
-                    } else break;
-                }
-                fnm.add(header, set.getAbsolutePath());
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Spanish.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException e){
-                System.out.println(e);
-            }
-        });
-    }
-    
+    }  
+   
     
     /**
      * For each set in the file name map create a button and put in ArrayList setBtns
      */
     
     private void createSetBtns(){
-        fnm.mappings.forEach(set->{
+        Spanish.fnm.mappings.forEach(set->{
             Button btn = new Button(set[0]);
             btn.setId(set[0]);
             btn.setPrefSize(675, 117);
             btn.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
-                    System.out.println(btn.getId());
+                    Spanish.selectedSet = btn.getId();
+                    gridpane.getScene().getWindow().hide();
                 }
             });
             setBtns.add(btn);
