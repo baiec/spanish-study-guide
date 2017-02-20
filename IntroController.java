@@ -19,7 +19,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import spanish.Spanish;
 
 
@@ -30,7 +32,8 @@ import spanish.Spanish;
  */
 public class IntroController implements Initializable {
 
-    public GridPane gridpane;
+    public ScrollPane scrollpane;
+    public VBox vbox;
     public Button btn;
     
     ArrayList<Button> setBtns = new ArrayList<Button>();
@@ -43,7 +46,7 @@ public class IntroController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+            scrollpane.setFitToWidth(true);
             createSetBtns();
             insertSetBtns();
     }  
@@ -57,11 +60,11 @@ public class IntroController implements Initializable {
         Spanish.fnm.mappings.forEach(set->{
             Button btn = new Button(set[0]);
             btn.setId(set[0]);
-            btn.setPrefSize(675, 117);
+            btn.setMinSize(620, 100);
             btn.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     Spanish.selectedSet = btn.getId();
-                    gridpane.getScene().getWindow().hide();
+                    scrollpane.getScene().getWindow().hide();
                 }
             });
             setBtns.add(btn);
@@ -72,8 +75,7 @@ public class IntroController implements Initializable {
     
     private void insertSetBtns(){
         for(int i = 0; i < setBtns.size(); i++){
-            gridpane.add(setBtns.get(i), 0, i, 2, 1);
-            
+            vbox.getChildren().add(setBtns.get(i));
         }
     }
     
