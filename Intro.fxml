@@ -10,6 +10,9 @@
 
 <ScrollPane fx:id="scrollpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="635.0" prefHeight="400.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="spanish.IntroController">
    <content>
-      <VBox fx:id="vbox" prefHeight="100.0" prefWidth="635.0" />
+      <VBox fx:id="vbox" prefHeight="100.0" prefWidth="635.0">
+         <children>
+            <Button fx:id="createNewSet" minHeight="100.0" minWidth="635.0" mnemonicParsing="false" onAction="#createSetBtnAction" prefHeight="100.0" prefWidth="543.0" text="Create New Set" />
+         </children></VBox>
    </content>
 </ScrollPane>

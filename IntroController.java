@@ -35,6 +35,7 @@ public class IntroController implements Initializable {
     public ScrollPane scrollpane;
     public VBox vbox;
     public Button btn;
+
     
     ArrayList<Button> setBtns = new ArrayList<Button>();
     
@@ -72,12 +73,19 @@ public class IntroController implements Initializable {
         });
     }
     
+    public void createSetBtnAction(){
+        scrollpane.getScene().getWindow().hide();
+        try {
+            Spanish.launchCreateSet();
+        } catch (Exception ex) {
+            Logger.getLogger(IntroController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     private void insertSetBtns(){
         for(int i = 0; i < setBtns.size(); i++){
             vbox.getChildren().add(setBtns.get(i));
         }
     }
-    
 }
 
