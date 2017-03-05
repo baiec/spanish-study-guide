@@ -48,7 +48,7 @@ public class IntroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
             scrollpane.setFitToWidth(true);
-            createSetBtns();
+            makeSetBtns();
             insertSetBtns();
     }  
    
@@ -57,7 +57,7 @@ public class IntroController implements Initializable {
      * For each set in the file name map create a button and put in ArrayList setBtns
      */
     
-    private void createSetBtns(){
+    private void makeSetBtns(){
         Spanish.fnm.mappings.forEach(set->{
             Button btn = new Button(set[0]);
             btn.setId(set[0]);
@@ -74,12 +74,8 @@ public class IntroController implements Initializable {
     }
     
     public void createSetBtnAction(){
+        Spanish.selectedSet = "create";
         scrollpane.getScene().getWindow().hide();
-        try {
-            Spanish.launchCreateSet();
-        } catch (Exception ex) {
-            Logger.getLogger(IntroController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
     private void insertSetBtns(){

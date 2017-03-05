@@ -54,7 +54,20 @@ public class Spanish extends Application {
         stage.show();
         stage.setOnHidden(new EventHandler<WindowEvent>(){
             public void handle(WindowEvent we){
-                System.out.println(selectedSet);
+                if(selectedSet.equals("create")){
+                    try{
+                        Parent root = FXMLLoader.load(getClass().getResource("createSet.fxml"));
+                        Scene scene = new Scene(root);
+                        Stage stage1 = new Stage();
+                        stage1.setScene(scene);
+                        stage1.show();
+                    } catch(Exception e){
+                        System.err.println(e);
+                    }
+                } else {
+                    System.out.println(selectedSet);
+                }
+
             }
         });
     }
@@ -124,4 +137,16 @@ public class Spanish extends Application {
 
         return files;
     }
+    
+    /*public static void launchCreateSet(){
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("createSet.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e){
+            System.err.println(e);
+        }
+    }*/
 }
