@@ -6,15 +6,21 @@
 package spanish;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
+import java.util.Set;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -26,8 +32,10 @@ public class CreateSetController implements Initializable {
     public GridPane createSetUI;
     public Button addItemBtn;
     public GridPane itemsPane;
+    public TextField promptField;
+    public TextField answerField;
 
-    private int items = 0;
+    private ArrayList<Text[]> textFields = new ArrayList();
     
     /**
      * Initializes the controller class.
@@ -36,22 +44,58 @@ public class CreateSetController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //System.out.println("hi im the cree8 set controller");
-        
-        //createSetUI.add(new Label("First"), 0, 0);
+        answerField.setOnKeyPressed(event -> {
+            answerField.setStyle("-fx-border-color: #fff");
+        });
+        promptField.setOnKeyPressed(event -> {
+            promptField.setStyle("-fx-border-color: #fff");
+        });
+        //itemsPane.getChildren().clear();
     }
     
+    private void updateItemsPane(){
+        itemsPane.getChildren().clear();
+        for(int i=0;i<textFields.size();i++){
+            itemsPane.addRow(i, textFields.get(i)[0], textFields.get(i)[1]);
+        }
+    }
+    
+   /*
+    * Removes clicked node from current word list and puts Texts into TextFields
+    */ 
+    private void editNode(int index){
+        Text[] text = textFields.get(index);
+        promptField.setText(text[0].getText());
+        answerField.setText(text[1].getText());
+        textFields.remove(index);
+        updateItemsPane();
+    }
     
     public void addItemBtnAction () {
-        items++;
-        System.out.println("There are " + items + " items");
-                
-        TextField prompt = new TextField();
-        TextField answer = new TextField();
-        prompt.setId("prompt-" + items);
-        answer.setId("answer-" + items);
-        
-        itemsPane.addRow(items, prompt, answer);
+        if(promptField.getText().trim().equals("") && answerField.getText().trim().equals("")){
+            promptField.setStyle("-fx-border-color: #ed5642");
+            answerField.setStyle("-fx-border-color: #ed5642");
+        } else if (promptField.getText().trim().equals("") && !answerField.getText().trim().equals("")){
+            promptField.setStyle("-fx-border-color: #ed5642");
+        } else if (!promptField.getText().trim().equals("") && answerField.getText().trim().equals("")){
+            answerField.setStyle("-fx-border-color: #ed5642");
+        } else {
+            
+            Text texts[] = new Text[2];
+            texts[0] = new Text(promptField.getText());
+            texts[1] = new Text(answerField.getText());
+            textFields.add(texts);
+            for(Text text : texts){
+                text.setOnMouseClicked(event -> {
+                    editNode(GridPane.getRowIndex(text));
+                });
+            }
+            updateItemsPane();
+            promptField.setText("");
+            answerField.setText("");
+        }
     }
-
+       
 }
+
+

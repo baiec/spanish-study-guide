@@ -1,26 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="createSetUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="spanish.CreateSetController">
+<GridPane fx:id="createSetUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="631.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="spanish.CreateSetController">
   <children>
-    <Button fx:id="addItemBtn" mnemonicParsing="false" onAction="#addItemBtnAction" prefHeight="78.0" prefWidth="600.0001220703125" text="Button" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-    <ScrollPane prefHeight="322.0" prefWidth="601.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+    <Button fx:id="addItemBtn" mnemonicParsing="false" onAction="#addItemBtnAction" prefHeight="78.0" prefWidth="677.0" text="Submit" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <ScrollPane prefHeight="379.0" prefWidth="631.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
       <content>
-        <GridPane fx:id="itemsPane" prefHeight="35.0" prefWidth="600.0">
+        <GridPane fx:id="itemsPane" alignment="CENTER" prefHeight="35.0" prefWidth="630.0" vgap="10.0">
           <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints Halignment="CENTER" halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           </columnConstraints>
           <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
           </rowConstraints>
         </GridPane>
       </content>
     </ScrollPane>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <children>
+            <TextField fx:id="promptField" prefHeight="48.0" prefWidth="345.0" />
+            <TextField fx:id="answerField" prefHeight="56.0" prefWidth="341.0" />
+         </children>
+      </HBox>
   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="48.0" />
+      <RowConstraints maxHeight="307.0" minHeight="263.0" prefHeight="284.0" />
+   </rowConstraints>
 </GridPane>
