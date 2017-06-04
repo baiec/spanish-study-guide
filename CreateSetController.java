@@ -10,10 +10,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -21,6 +25,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import spanish.Spanish;
 
 /**
  * FXML Controller class
@@ -34,6 +40,7 @@ public class CreateSetController implements Initializable {
     public GridPane itemsPane;
     public TextField promptField;
     public TextField answerField;
+    public TextField titleInput;
 
     private ArrayList<Text[]> textFields = new ArrayList();
     
@@ -95,6 +102,30 @@ public class CreateSetController implements Initializable {
             answerField.setText("");
         }
     }
+    
+    /*
+    * Return to main if no items added, or write items to text file
+    */
+    public void submitSet(Event event){
+        
+        Button btn = (Button) event.getSource();
+        
+        
+        if(btn.getId().equals("cancel")){
+            Spanish.newSet = null;
+            itemsPane.getScene().getWindow().hide();
+        } 
+        else {
+            if(titleInput.getText().trim().equals("")){
+                titleInput.setStyle("-fx-border-color: #ed5642");
+            }
+            else {
+                Spanish.newSet = titleInput.getText();
+                itemsPane.getScene().getWindow().hide();
+            }
+        }
+    }
+    
        
 }
 

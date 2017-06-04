@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="createSetUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="631.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="spanish.CreateSetController">
+<GridPane fx:id="createSetUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="spanish.CreateSetController">
   <children>
-    <Button fx:id="addItemBtn" mnemonicParsing="false" onAction="#addItemBtnAction" prefHeight="78.0" prefWidth="677.0" text="Submit" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <Button fx:id="addItemBtn" mnemonicParsing="false" onAction="#addItemBtnAction" prefHeight="78.0" prefWidth="677.0" text="Add Item to Set" GridPane.columnIndex="0" />
     <ScrollPane prefHeight="379.0" prefWidth="631.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
       <content>
         <GridPane fx:id="itemsPane" alignment="CENTER" prefHeight="35.0" prefWidth="630.0" vgap="10.0">
@@ -26,8 +26,19 @@
     </ScrollPane>
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
-            <TextField fx:id="promptField" prefHeight="48.0" prefWidth="345.0" />
-            <TextField fx:id="answerField" prefHeight="56.0" prefWidth="341.0" />
+            <TextField fx:id="promptField" prefHeight="47.0" prefWidth="318.0" />
+            <TextField fx:id="answerField" prefHeight="47.0" prefWidth="314.0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+         <children>
+            <TextField fx:id="titleInput" onAction="#submitSet" prefHeight="52.0" prefWidth="320.0" promptText="Title" />
+            <HBox prefHeight="52.0" prefWidth="308.0">
+               <children>
+                  <Button fx:id="cancel" mnemonicParsing="false" onAction="#submitSet" prefHeight="52.0" prefWidth="178.0" text="Cancel" />
+                  <Button fx:id="save" mnemonicParsing="false" onAction="#submitSet" prefHeight="52.0" prefWidth="163.0" text="Save" />
+               </children>
+            </HBox>
          </children>
       </HBox>
   </children>
@@ -36,7 +47,8 @@
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
-      <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="48.0" />
-      <RowConstraints maxHeight="307.0" minHeight="263.0" prefHeight="284.0" />
+      <RowConstraints maxHeight="121.0" minHeight="6.0" prefHeight="48.0" />
+      <RowConstraints maxHeight="456.0" minHeight="152.0" prefHeight="452.0" />
+      <RowConstraints maxHeight="352.0" minHeight="0.0" prefHeight="57.0" />
    </rowConstraints>
 </GridPane>
