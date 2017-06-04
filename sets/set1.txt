@@ -1,4 +1,4 @@
 Set1
-pretty|bonito|trans
-fat|gordo|trans
-Ella IS en Honolulu.|está|fill
+pretty|bonito
+fat|gordo
+Ella IS en Honolulu.|está

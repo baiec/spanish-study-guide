@@ -32,39 +32,63 @@ import javafx.stage.WindowEvent;
 
 public class Spanish extends Application {
 
-    public static String selectedSet = "";
+    public static String selectedSet   = "";
+    public static String newSet        = "";
     public static FileNameMap fnm      = new FileNameMap();
     /*@var absolute path to sets directory with trailing slash*/
     public static String      setsDir  = new String();
 
 
     public static void main(String[] args) {
+        
         setPaths();
         populateFNM();
         launch(args);
+        
     }
 
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Intro.fxml"));
-        Scene scene = new Scene(root);
-
-        stage.setScene(scene);
-        stage.show();
-        stage.setOnHidden(new EventHandler<WindowEvent>(){
-            public void handle(WindowEvent we){
-                System.out.println(selectedSet);
-            }
-        });
+        
+        createWindow("Intro.fxml", IntroStageCloseWindow);
+   
     }
 
+    EventHandler<WindowEvent> IntroStageCloseWindow = new EventHandler<WindowEvent>() {
+        
+        public void handle(WindowEvent we) {
+            
+            if(selectedSet.equals("create")){
+                createWindow("createSet.fxml", CreateSetCloseWindow);
+            } 
+            else {
+                System.out.println(selectedSet);
+            }
+        }
+    };
+    
+    EventHandler<WindowEvent> CreateSetCloseWindow = new EventHandler<WindowEvent>() {
+        
+        public void handle(WindowEvent we){
+            
+            if(newSet == null){
+                createWindow("Intro.fxml", IntroStageCloseWindow);
+            } 
+            else {
+                System.out.println(selectedSet);
+            }
+            
+        }
+        
+    };
+        
 
     /**
      * Sets absolute path to sets dir
      */
 
-    private static void setPaths(){
+    private static void setPaths() {
         try {
             if (System.getProperty("os.name").equalsIgnoreCase("windows")) {
                 Spanish.setsDir = System.getProperty("user.dir") + "\\src\\spanish\\sets\\";
@@ -106,6 +130,24 @@ public class Spanish extends Application {
                 System.out.println(e);
             }
         });
+    }
+    
+    /*
+    * Creates and shows all components for a given view (fxml file)
+    */
+    public void createWindow (String viewName, EventHandler<WindowEvent> closeEventHandler) {
+        
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(viewName));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            stage.setOnHidden(closeEventHandler);
+        } catch (IOException e){
+            System.err.println(e);
+        }
+        
     }
 
 
